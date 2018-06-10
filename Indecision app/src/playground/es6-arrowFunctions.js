@@ -45,11 +45,42 @@ console.log(add2(3,4,5))
 const user = {
     name : 'shubham',
     cities : ['delhi','mumbai','toronto'],
-    citiesVisited : function(){
-        this.cities.forEach((city) => {
-            console.log(this.name + ' visited ' + city);
-            //'this' here (in arrow function will use the this  of the parent i.e this of this.cities, so no need to bound 'this' as in the case of ES5 )
-        });
+
+    //If we use arrow function here. this.cities will try to use 'this' of the parent scope 
+    // i.e the global scope where 'this' cannot reference to the object 
+    // citiesVisited : () => {
+    //     this.cities.forEach((city) => {
+    //         console.log(this.name + ' visited ' + city);
+    //     });
+    // }
+
+    // citiesVisited : function(){
+    citiesVisited(){
+        //shorthand method
+        return this.cities.map((city) => city + ' was visited by ' + this.name + '! ');
+       
+        // const cityMessage = this.cities.map((city) => {
+        //     return city + ' was visited by ' + this.name + '! ';
+        // });
+        // return cityMessage;
+
+
+        // this.cities.forEach((city) => {
+        //     console.log(this.name + ' visited ' + city);
+        //     //'this' here (in arrow function will use the this  of the parent i.e this of this.cities, 
+        //     //so no need to bound 'this' as in the case of ES5 )
+        // });
     }
 };
-user.citiesVisited();
+console.log(user.citiesVisited());
+
+//Challenge 
+const multiplier = {
+    multiplyBy : 2,
+    numbersArray : [1,2,3,4,5,6],
+    multiply(){
+        return this.numbersArray.map((num) => num*this.multiplyBy);
+    }
+   
+}
+console.log(multiplier.multiply());

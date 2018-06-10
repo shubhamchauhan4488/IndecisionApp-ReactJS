@@ -1,59 +1,115 @@
 'use strict';
 
-// //Functions ES syntax 
-// function square(x){
-//  return x*x; //returns the square of the number
-// };
-// //OR
-// let square2 = function(x){
-//     return x*x;
-// };
-// console.log(square(8));
-// console.log(square2(5));
+console.log("This is coming from app.js");
 
-
-// //ES6 syntax : arrow functions
-// let squareArrow = (x) => {
-//     return x*x;
-// }
-// let squareArrow2 = (x) =>  x*x  //Implicit return for a single statement
-// console.log(squareArrow(81));
-// console.log(squareArrow2(15));
-
-// let fullname = 'Shubham Chauhan'
-// let getFirstName = (fullname) => {
-//     return fullname.split(' ')[0];
-// };
-// let getFirstName2 = (fullname) => fullname.split(' ')[0];
-// console.log(getFirstName(fullname));
-// console.log(getFirstName2(fullname));
-
-
-//Es 5 arguments object is no longer used in ES6 
-var add = function add(a, b) {
-    console.log(arguments);
-    return a + b;
+//This is JSX : Javascript XML
+//We inserted div beacuse the adjacent JSX cannot occur, it needs to be placed under one root element
+var app = {
+    title: 'Indecision',
+    subtitle: 'Some Subtitle',
+    options: []
 };
-console.log(add(3, 4, 5));
 
-//ES6 syntax , arguments no longer available
-var add2 = function add2(a, b) {
-    // console.log(arguments);
-    return a + b;
-};
-console.log(add2(3, 4, 5));
-
-//ES5 this was not bound
-var user = {
-    name: 'shubham',
-    cities: ['delhi', 'mumbai', 'toronto'],
-    citiesVisited: function citiesVisited() {
-        var _this = this;
-
-        this.cities.forEach(function (city) {
-            console.log(_this.name + ' visited ' + city);
-            //'this' here (in arrow function will use the this  of the parent i.e this of this.cities, so no need to bound 'this' as in the case of ES5 )
-        });
+var onAddClick = function onAddClick(e) {
+    e.preventDefault(); //avoid reloading of entire page
+    var val = e.target.elements.option.value; //where e.target refers to the the form as form is the target of the clicking event
+    if (val) {
+        app.options.push(val);
+        e.target.elements.option.value = '';
+        renderapp();
     }
 };
-user.citiesVisited();
+var onRemoveAllClick = function onRemoveAllClick() {
+    app.options = [];
+    renderapp();
+};
+
+var renderapp = function renderapp() {
+
+    var temp = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            app.title
+        ),
+        app.subtitle && React.createElement(
+            'p',
+            null,
+            'Put your life in the hands of the computer'
+        ),
+        React.createElement(
+            'p',
+            null,
+            app.options.length > 0 ? 'Here are you options' : 'No options to display'
+        ),
+        React.createElement(
+            'button',
+            { disabled: app.options.length === 0, onClick: decisionMaker },
+            'What should I do?'
+        ),
+        React.createElement(
+            'button',
+            { onClick: onRemoveAllClick },
+            'Remove All'
+        ),
+        React.createElement(
+            'ol',
+            null,
+            //Rendering JSX inside JSX , It is necessary to give the key for React to keep track of the elements 
+            //By using mao function we have mapped the string to the JSX inside the options array
+            app.options.map(function (item) {
+                return React.createElement(
+                    'li',
+                    { key: item },
+                    item
+                );
+            })
+        ),
+        React.createElement(
+            'form',
+            { onSubmit: onAddClick },
+            React.createElement('input', { type: 'text', name: 'option' }),
+            React.createElement(
+                'button',
+                null,
+                'Add item'
+            )
+        )
+    );
+    ReactDOM.render(temp, appRoot);
+};
+var appRoot = document.getElementById("main-div");
+renderapp();
+
+// var username = 'Shubham';
+// var userlocation = 'Gurgaon';
+// var age = 26;
+
+//Making an object instead of individual variables 
+// const tempTwo = {
+//     //try commenting the code
+//     username : 'Shubham',
+//     userlocation  : 'Gurgaon',
+//     age : 20
+// };
+
+// function getLocation(location){
+// if(location){
+//     return <p>Location : {location}</p>
+// }else{
+//     return 'Location is Unknown'
+// }
+
+// }
+// const templateTwo = (
+//     <div>
+//         {/* Using conditional rendering */}
+//         {/* //Ternary operator used when we have to do choose b/w 2 things */}
+//         <h1>{(tempTwo.username) ? tempTwo.username : 'Anonymous'} </h1>
+//         {(tempTwo.age && tempTwo.age>=18) && <p> Age : {tempTwo.age}</p>}
+//         {getLocation(tempTwo.userlocation)}
+//     </div>
+
+// );
