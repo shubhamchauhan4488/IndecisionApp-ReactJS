@@ -21,6 +21,13 @@ const onRemoveAllClick = () => {
     app.options = [];
     renderapp();
 }
+const decisionMaker = () => {
+    const randomOption = Math.floor(Math.random() * app.options.length);
+    //Math.random will give number between 0 and 1
+    console.log(randomOption);
+    const option = app.options[randomOption];
+    alert(option);
+}
 
 const renderapp = () => {
 

@@ -23,6 +23,13 @@ var onRemoveAllClick = function onRemoveAllClick() {
     app.options = [];
     renderapp();
 };
+var decisionMaker = function decisionMaker() {
+    var randomOption = Math.floor(Math.random() * app.options.length);
+    //Math.random will give number between 0 and 1
+    console.log(randomOption);
+    var option = app.options[randomOption];
+    alert(option);
+};
 
 var renderapp = function renderapp() {
 
