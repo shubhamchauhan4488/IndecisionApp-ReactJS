@@ -13,6 +13,9 @@ console.log('Namelet', nameLet);
 const fullName = 'Shubham chauhan';
 //something declared with let follows block scope unlike var which will be accessible outside 
 //if construct even if it is decalred inside that if{}
+
+//use const if value will never change 
+//use let if value will change 
 let firstName
 if (fullName)
 {
