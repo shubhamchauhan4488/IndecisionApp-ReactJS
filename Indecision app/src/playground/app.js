@@ -1,3 +1,5 @@
+import AddOptions from './components/AddOptions'
+
 // const obj = {
 //     name : 'Vikram',
 //     getName(){
@@ -237,37 +239,7 @@ const Option = (props) =>
         //     }
         // }
 
-class AddOptions extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            error : undefined
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-    handleSubmit(e){
-        e.preventDefault(); 
-        const option = e.target.elements.option.value.trim();
-        const error = this.props.handleOption(option);
-        e.target.elements.option.value = '';
-        this.setState(() => {
-            return { 
-                error : error
-            }
-        })
-    }
-    render(){
-        return(
-            <div>
-            {this.state.error && <p>{this.state.error}</p>}
-                <form onSubmit = {this.handleSubmit}>
-                    <input type='text' name = 'option'></input>
-                    <button>Add Option</button>
-                </form>
-             </div>
-        );
-    }
-}
+
 
 //Now this has no use
 // const jsx = (
