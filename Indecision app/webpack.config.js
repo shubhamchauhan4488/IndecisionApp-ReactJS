@@ -17,7 +17,16 @@ module.exports = {
             loader : 'babel-loader',
             test : /\.js$/, // run babel through all js files to convert JSX to javascript
             exclude : /node_modules/ //name of the files where we do not want to run babel
-        }]
+        },
+        {
+            test: /\.s?css$/,
+            use: [
+              'style-loader',
+              'css-loader',
+              'sass-loader'
+            ]
+        }
+    ]
     },
     devtool : 'cheap-module-eval-source-map',
     //devserver genrates its own bundle.js file dynamically and does not produce any physical file and serves it up and this is what makes it quicker

@@ -1,0 +1,15 @@
+.add-option{
+    display: flex;
+    padding: $s-size;
+
+}
+.add-option-input{
+    flex-grow: 1;
+    border : none;
+    background: $dark-blue;
+    border-bottom : .6rem solid darken($dark-blue, 10%);
+    margin-right: 1rem;
+    border-radius: $xs-size;
+    color: $light-purple;
+    padding: $xs-size;
+}

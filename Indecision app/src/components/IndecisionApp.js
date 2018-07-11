@@ -59,7 +59,7 @@ class IndecisionApp extends React.Component{
     }
     handleDeleteAllOption = (optionToRemove) =>{
         this.setState((prevState) => ({
-            options : prevState.option.filter((option) => {
+            options : prevState.options.filter((option) => {
                 return optionToRemove !== option;
             })
         }))
@@ -106,9 +106,22 @@ class IndecisionApp extends React.Component{
         return(
             <div>
                 <Header subtitle={subtitle}/>
-                <Action hasOption={this.state.options.length > 0} handlePick={this.handlePick}/>
-                <Options options = {this.state.options} handleDeleteAllOptions ={this.handleDeleteAllOptions} handleDeleteAllOption = {this.handleDeleteAllOption}/>
-                <AddOptions handleOption ={this.handleOption}/>
+                <div className = "container ">
+                    <Action 
+                    hasOption={this.state.options.length > 0} 
+                    handlePick={this.handlePick}
+                    />
+                    <div className = "widget-header__options">
+                        <Options 
+                        options = {this.state.options} 
+                        handleDeleteAllOptions ={this.handleDeleteAllOptions} 
+                        handleDeleteAllOption = {this.handleDeleteAllOption}
+                        />
+                        <AddOptions 
+                        handleOption ={this.handleOption}
+                        />
+                    </div>
+                </div>
                 <OptionModal 
                 selectedOption = {this.state.selectedOption}
                 handleModalPress = {this.handleModalPress}/>

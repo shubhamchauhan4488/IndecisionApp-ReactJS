@@ -7,6 +7,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import IndecisionApp from './components/IndecisionApp';
+import 'normalize.css/normalize.css'
+import './styles/styles.scss';
 
 // const obj = {
 //     name : 'Vikram',
@@ -20,11 +22,6 @@ import IndecisionApp from './components/IndecisionApp';
 //Solution
 // const getName = obj.getName.bind(obj);
 // console.log(getName());
-
-
-
-
-
 
     // Component is a React Class. With React components We have to define a method here render()
     // With es6 classes we can have zero methods

@@ -5,8 +5,11 @@
  {
      return(
          <div>
-         <button onClick = {props.handlePick}
-         disabled = {!props.hasOption }>What should I do</button>
+         <button className = "big-button"
+         onClick = {props.handlePick}
+         disabled = {!props.hasOption }>
+         What should I do
+         </button>
          </div>
      );
  }
