@@ -16,3 +16,10 @@
     font-weight: 500;
     margin : 0
 }
+
+//max-width here means that upto this mentioned width(mobile width approx) we shall apply the following styles
+@media (max-width : $mobile-breakpoint) {
+    .header{
+        margin-bottom : $s-size;
+    }
+}
